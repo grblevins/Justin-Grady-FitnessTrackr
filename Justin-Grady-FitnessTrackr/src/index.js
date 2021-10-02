@@ -2,8 +2,8 @@ import React, { useState, useEffect }from 'react';
 import ReactDOM from 'react-dom';
 import { Route, Switch } from 'react-router-dom';
 import {BrowserRouter as Router} from 'react-router-dom';
-import { Home, Register, Login, Routines, } from '../src/components/index';
-import handleToken from './utilities/token';
+import { Home, Register, Login, Routines, Header } from '../src/components/index';
+import  handleToken  from './utilities/token';
 
 
 const App = () => {
@@ -16,14 +16,11 @@ const App = () => {
 
   return (
   <div className='app'>
+    <Header isLoggedIn={isLoggedIn} setToken={handleToken.saveToken} />
     <main>
       <Switch> 
         <Route exact path="/register"><Register setSavedToken={setSavedToken} /></Route>
         <Route path="/login"><Login setSavedToken={setSavedToken} /></Route>
-        {/* <Route path="/posts">
-            <Posts isLoggedIn={isLoggedIn} />
-            <PostForm isLoggedIn={isLoggedIn} />
-        </Route> */}
         <Route exact path="/"><Home /></Route>
         <Route exact path="/routines"><Routines /></Route>
       </Switch>
