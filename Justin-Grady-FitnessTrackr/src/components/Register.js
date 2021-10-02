@@ -6,10 +6,13 @@ import TokenUtilities from '../utilities/token';
 
 const Register = () => {
     let history = useHistory();
-    const [user, setUser] = useState({username: '', password: ''});
+    const [user, setUser] = useState({username: '', password: ''}); 
+    const [passwordConfirm, setPasswordConfirm] = useState({passwordConfirm: ''});
+    
     async function storeToken() {
         try {
-            const data = await API.makeRequest('/users/register', 'POST', {user});
+            debugger
+            const data = await API.makeRequest('/users/register', 'POST', user);
             console.log(data);
             TokenUtilities.saveToken(data.token);
         } catch (error) {
@@ -18,6 +21,7 @@ const Register = () => {
             history.push('/');
         }
     }
+
     function handleSubmit(event) {
         event.preventDefault();
         storeToken();
@@ -31,10 +35,37 @@ const Register = () => {
         console.log(user, setUser)
     }
 
+    function handleConfirmInput(event) {
+        const passwordConfirm = event.target.attributes['password-confirmation'].value;
+        const newState = { ...passwordConfirm};
+        newState[passwordConfirm] = event.target.value;
+        setPasswordConfirm(newState);
+
+    }
+
+        async function onSubmit(event) {
+        event.preventDefault();
+        console.log(createUser.username);
+        if (user.username.length < 1 || createUser.password.length < 1) {
+            alert('username/Password must not be empty');
+        }
+        else if (user.username.length < 5 || createUser.password.length < 5) {
+            alert('username/Password must be longer than 5 characters');
+        }
+        else if (user.username.length > 15 || createUser.password.length > 15) {
+            alert('username/Password must be less than 16 characters');
+        }
+        else if (user.password !== confirmPassword.confirmPassword) {
+            alert('Password must be the same in both fields');
+        }
+        else {
+            createServerToken();
+        }}
+
     return (
         <div>
             {}
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit, onSubmit}>
                 <input type='text'
                         required
                         name='username'
@@ -50,8 +81,8 @@ const Register = () => {
                 <input type='password-confirmation'
                         required
                         name='password-confirmation'
-                        value={user.password}
-                        onChange={handleInput}
+                        value={passwordConfirm.passwordConfirm}
+                        onChange={handleConfirmInput}
                         placeholder='password-confirmation'></input>
                 <button>Register</button>
             </form>

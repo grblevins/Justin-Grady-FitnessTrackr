@@ -11,7 +11,7 @@ const Login = ({setSavedToken}) => {
 
     async function storeServerToken() {
         try {
-            const userLogin = {user};
+            const userLogin = user;
             const data = await api.makeRequest('/users/login', 'POST', userLogin);
             handleToken.saveToken(data.data.token);
             setSavedToken(handleToken.grabToken());
