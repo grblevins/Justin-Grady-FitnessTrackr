@@ -2,7 +2,7 @@ import React, { useState, useEffect }from 'react';
 import ReactDOM from 'react-dom';
 import { Route, Switch } from 'react-router-dom';
 import {BrowserRouter as Router} from 'react-router-dom';
-import { Home, Register, Login, Routines} from '../src/components/index';
+import { Home, Register, Login, Routines, } from '../src/components/index';
 import handleToken from './utilities/token';
 
 

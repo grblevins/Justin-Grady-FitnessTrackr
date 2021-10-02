@@ -10,18 +10,20 @@ const Routines = () => {
     useEffect(async function(){
         try {
             const data = await api.makeRequest('/routines', 'GET');
+            console.log(data);
             setRoutineList(data);
         } catch(error) {
-            throw error
+
+            console.error(error);
           }  
       }, []);
-
+      console.log(routineList)
     const routineElement = routineList.map((routine,index) => {
        return <Routine key={'Routine Number' + index}
             name={routine.name}
             goal={routine.goal}
             creatorName={routine.creatorName}
-            // activities={routine.activities}
+            activities={routine.activities}
         />
     })
 
