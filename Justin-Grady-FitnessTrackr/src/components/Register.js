@@ -36,7 +36,9 @@ const Register = () => {
     }
 
     function handleConfirmInput(event) {
-        const passwordConfirm = event.target.attributes['password-confirmation'].value;
+        let pass = event.target.getAttribute('name');
+        console.log(pass);
+        const passwordConfirm = event.target.attributes['name'].value;
         const newState = { ...passwordConfirm};
         newState[passwordConfirm] = event.target.value;
         setPasswordConfirm(newState);
@@ -45,17 +47,17 @@ const Register = () => {
 
         async function onSubmit(event) {
         event.preventDefault();
-        console.log(createUser.username);
-        if (user.username.length < 1 || createUser.password.length < 1) {
+        console.log(user.username);
+        if (user.username.length < 1 || user.password.length < 1) {
             alert('username/Password must not be empty');
         }
-        else if (user.username.length < 5 || createUser.password.length < 5) {
+        else if (user.username.length < 5 || user.password.length < 5) {
             alert('username/Password must be longer than 5 characters');
         }
-        else if (user.username.length > 15 || createUser.password.length > 15) {
+        else if (user.username.length > 15 || user.password.length > 15) {
             alert('username/Password must be less than 16 characters');
         }
-        else if (user.password !== confirmPassword.confirmPassword) {
+        else if (user.password !== passwordConfirm.passwordConfirm) {
             alert('Password must be the same in both fields');
         }
         else {
