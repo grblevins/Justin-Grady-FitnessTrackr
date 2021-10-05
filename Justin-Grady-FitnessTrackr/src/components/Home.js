@@ -9,6 +9,7 @@ const Home = () => {
         <p>Returning user?<Link to="/login"> Login Here!</Link></p>
         <p>First time here?<Link to="/register"> Register Here!</Link></p>
         <p>Take a look at some of the routines our users have made! <Link to="/routines"> Click here! </Link></p>
+        <p><Link to="/RoutineForm"> Click to make a routine</Link></p>
     </div>
     )
 }

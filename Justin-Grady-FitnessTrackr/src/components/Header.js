@@ -9,7 +9,7 @@ const Header = ({isLoggedIn, setToken}) => {
     
     function handleLogout(e) {
         e.preventDefault();
-        TokenUtilities.removeToken();
+        TokenUtilities.deleteToken();
         setToken(null);
     }
 
