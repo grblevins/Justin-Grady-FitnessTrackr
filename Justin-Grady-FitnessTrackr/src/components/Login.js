@@ -13,12 +13,12 @@ const Login = ({setSavedToken}) => {
         try {
             const userLogin = user;
             const data = await api.makeRequest('/users/login', 'POST', userLogin);
-            handleToken.saveToken(data.data.token);
+            handleToken.saveToken(data.token);
             setSavedToken(handleToken.grabToken());
         } catch (error) {
             console.error(error);
         } finally {
-            history.push('/posts');
+            history.push('/');
         }
     }
 
